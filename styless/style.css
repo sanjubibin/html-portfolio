@@ -1,0 +1,15 @@
+html{
+    background-color:rgb(255, 186, 252);
+}
+.red_heading{
+    color: darkmagenta;
+}
+
+/* ----------a_tag---------- */
+
+a[draggable="true"]{
+    color: red;
+}
+a[draggable="false"]{
+    color:darkred;
+}
