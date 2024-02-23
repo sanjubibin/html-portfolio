@@ -1,5 +1,5 @@
 html{
-    background-color:rgb(255, 186, 252);
+    background-color:rgb(255, 233, 254);
 }
 .red_heading{
     color: darkmagenta;
@@ -8,7 +8,8 @@ html{
 /* ----------a_tag---------- */
 
 a[draggable="true"]{
-    color: red;
+    color: lightseagreen;
+    font-style: italic;
 }
 a[draggable="false"]{
     color:darkred;
