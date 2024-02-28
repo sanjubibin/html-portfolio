@@ -1,16 +1,45 @@
-html{
-    background-color:rgb(223, 255, 210);
-}
-.red_heading{
-    color: darkmagenta;
+body {
+    color: black;
+    font-family: sans-serif;
+    background-color: antiquewhite;
+    margin: 0px;
 }
 
-/* ----------a_tag---------- */
-
-a[draggable="true"]{
-    color: lightseagreen;
-    font-style: italic;
+#header {
+    background-color: rgb(0, 211, 211);
+    width: 100%;
+    margin: 0px;
+    padding: 10px ;
+    height: auto;
+    position: relative;
 }
-a[draggable="false"]{
-    color:darkred;
+
+#meta_data {
+    background-color: rgb(0, 255, 255);
+    width: auto;
+    padding: 20px;
+}
+
+#meta_data > a {
+    display: inline-block;
+    margin: 10px;
+    padding: 0px 20px;
+    background-color: rgb(255, 0, 0);
+    color: black;
+    text-decoration: none;
+}
+
+#footer {
+    background-color: rgb(0, 211, 211);
+    height: 100%;
+}
+
+#footer > a {
+    text-decoration: none;
+    text-align: center;
+    padding: 10px;
+}
+
+h1 {
+    font-weight: 900;
 }
