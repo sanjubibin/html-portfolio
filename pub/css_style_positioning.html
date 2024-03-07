@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .main{
+            height: 100vh;
+        }
+
+        h1{
+            padding: 15px;
+            background-color: blue;
+            color: white;
+            border: 2px solid black;
+        }
+
+        .button_group{
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 20px;
+            justify-content: center;
+        }
+
+        .button_group button{
+            padding: 10px 20px;
+            background-color: rgb(0, 126, 6);
+            border-radius: 10px;
+            color: white;
+            font-size: 20px;
+        }
+
+        .button_group button:hover{
+            background-color: chartreuse;
+            color: black;
+        }
+
+        .first_contents{
+            background-color: aqua;
+            border: 2px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .contents  {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .box{
+            top: 50px;
+            left: 50px;
+            border: 2px solid black;
+            height: 200px;
+            width: 200px;
+            background-color: violet;
+            margin: 10px;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>heading tag texts</h1>
+    <div class="main">
+        <div class="button_group">
+            <button id="static" onclick="changePosition(event)">static</button>
+            <button id="relative" onclick="changePosition(event)">relative</button>
+            <button id="absolute" onclick="changePosition(event)">absolute</button>
+            <button id="fixed" onclick="changePosition(event)">fixed</button>
+        </div>
+        <div class="contents">
+            <div class="first_contents">
+                <h2>Absolute Positioning</h2>
+                <p>position: absolute;</p>
+                <p>top: 50px;<br>left: 50px;</p>
+                <div class="box"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const staticBtn = document.querySelector('.static');
+        const relativeBtn = document.querySelector('.relative');
+        const absoluteBtn = document.querySelector('.absolute');
+        const fixedBtn = document.querySelector('.fixed');
+
+        const h2 = document.querySelector('.contents > .first_contents > h2');
+
+        const box = document.querySelector('.box');
+
+        // console.log('h2:::::::::: '+h2.innerText)
+
+        function changePosition(event){
+            if (event.target.id === "static"){
+                h2.innerText = "Static Positioning"
+                box.style.position = 'static';
+            }else if(event.target.id === "relative"){
+                h2.innerText = "Relative Positioning"
+                box.style.position = 'relative';
+            }else if(event.target.id === "absolute"){
+                h2.innerText = "Absolute Positioning"
+                box.style.position = 'absolute';
+            }else if(event.target.id === "fixed"){
+                h2.innerText = "Fixed Positioning"
+                box.style.position = 'fixed';
+            }
+        };
+
+    </script>
+</body>
+</html>
