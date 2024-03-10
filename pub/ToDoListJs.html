@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: rgb(215, 255, 255);
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        input{
+            border-radius: 5px;
+            padding: 6px;
+        }
+
+        label{
+            font-size: 20px;
+        }
+
+        table{
+            width: 100%;
+            border: 2px solid darkblue;
+            border-radius: 5px;
+            background-color: aqua;
+        }
+
+        tr{
+            text-align: center;
+            background-color: white;
+        }
+
+        th{
+            border: 2px solid darkblue;
+            background-color: antiquewhite;
+        }
+
+
+        td{
+            border: 1px solid darkblue;
+            background-color: antiquewhite;
+        }
+
+        button{
+            background-color: chartreuse;
+            border-radius: 5px;
+            padding: 5px 10px;
+        }
+
+        button:hover{
+            background-color: rgb(33, 66, 0);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>To do add task</h1>
+
+    <label for="task_name">Task</label>
+    <input type="text" name="task_name"><br><br>
+
+    <label for="task_status"> status</label>
+    <input type="text" name="task_status"><br><br>
+
+    <button id="button" onclick="addTask()">Add Task</button>
+
+    <p id="message"></p>
+
+    <h2>All To Do's:  </h2>
+
+    <table id="table">
+        <tr>
+            <th>Task to do</th>
+            <th>Status</th>
+            <th>To delete</th>
+        </tr>
+    </table>
+
+    <script>
+        function deleteParentElement(event){
+            event.target.parentNode.parentNode.remove();
+        };
+
+        const task_name = document.getElementsByName('task_name');
+        const task_status = document.getElementsByName('task_status');
+
+        const table = document.getElementById('table');
+
+        const btn_timeout_message = document.getElementById('message');
+        btn_timeout_message.style.display = 'none';
+        btn_timeout_message.style.color = 'red';
+
+        const button = document.getElementById('button');
+
+        button.disabled = false;
+        
+        function addTask(){
+            const tr_tag = document.createElement('tr')
+            const td_tag_task = document.createElement('td');
+            const td_tag_status = document.createElement('td');
+            const td_for_button_tag = document.createElement('td');
+
+            td_tag_task.innerText = task_name[0].value;
+            td_tag_status.innerText = task_status[0].value;
+            td_for_button_tag.innerHTML = '<button onclick="deleteParentElement(event)">click</button>';
+            console.log(td_for_button_tag);
+            
+            if (td_tag_task.innerText.trim().length !== 0 && td_tag_status.innerText.trim().length !== 0){
+
+                tr_tag.appendChild(td_tag_task);
+                tr_tag.appendChild(td_tag_status);
+                tr_tag.appendChild(td_for_button_tag);
+                
+                table.appendChild(tr_tag);
+
+                button.disabled = true;
+
+                if (button.disabled == true){
+                    setTimeout(function(){
+                        button.disabled = false;
+                    }, 2000);
+                };
+            }else {
+                btn_timeout_message.style.display = 'block';
+                
+                if (td_tag_task.innerText.trim().length == 0 && td_tag_status.innerText.trim().length == 0){
+                    btn_timeout_message.innerText = "Please, fill all fields!";
+                }else if (td_tag_task.innerText.trim().length == 0){
+                    btn_timeout_message.innerText = "Please, fill the task field!";
+                }else if (td_tag_status.innerText.trim().length == 0){
+                    btn_timeout_message.innerText = "Please, fill the status field!";
+                }
+                setTimeout(function (){
+                    btn_timeout_message.style.display = 'none';
+                }, 3000);
+            }
+        }
+    </script>
+</body>
+</html>
