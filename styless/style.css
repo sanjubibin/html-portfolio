@@ -34,12 +34,16 @@ body {
     bottom: 0px;
     position: fixed;
     width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 #footer > span > a {
     text-decoration: none;
     text-align: center;
-    padding: 10px;
+    padding: 10px;    text-align: center;
+
+    display: inline;
 }
 
 h1 {
@@ -48,7 +52,8 @@ h1 {
 
 @media (hover:hover) {
     #data > a:hover {
-        background-color: rgb(0, 143, 36);
+        background-color: rgb(0, 99, 25);
+        color: white;
     }
 
     #footer > span > a:hover {
