@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <style>
+        *{
+            font-family: "Poppins", sans-serif;
+            font-style: normal;
+        }
+
+        body{
+            margin: 0px;
+        }
+
+        .nav_bar{
+            background-color: rgb(193, 69, 255);
+            padding: 10px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .main_container{
+            display: flex;
+            flex-wrap: wrap;
+            margin: 20px;
+        }
+
+        .sub_book_container{
+            width: 200px;
+            padding: 20px;
+            margin: 10px;
+            text-align: center;
+            background-color: rgb(219, 180, 255);
+            border-radius: 20px;
+        }
+
+        .screen_blur{
+            position: fixed;
+            background-color: black;
+            opacity: 0.8;
+            width: 100%;
+            height: 100%;
+            top: 0px;
+            left: 0px;
+            bottom: 0px;
+            right: 0px;
+            display: none;
+            z-index: 1;
+        }
+
+        .popup_box{
+            z-index: 2;
+            background-color: rgb(219, 180, 255);
+            position: fixed;
+            transform: translate(-50%, -50%);
+            left: 50%;
+            top: 40%;
+            display: none;
+        }
+
+
+        .popup_container{
+            margin: 20px;
+            padding: 10px;
+        }
+
+        .popup_container input{
+            padding: 5px;
+            margin: 10px;
+            width: auto;
+            background-color: transparent;
+            border-radius: 5px;
+        }
+
+        .popup_container input:focus{
+            outline: none;
+            border: none;
+            border-bottom: 1px solid;
+        }
+
+        .popup_container textarea{
+            padding: 10px;
+            margin: 10px;
+            width: auto;
+            background-color: transparent;
+            border-radius: 5px;
+        }   
+
+        .popup_container textarea:focus{
+            outline: none;
+            border: none;
+            border: 1px solid;
+        }  
+
+        .popup_container button{
+            margin: 10px;
+            text-align: center;
+            background-color: blueviolet;
+            border-radius: 5px;
+        }
+
+        .popup_container input::placeholder, .popup_container textarea::placeholder{
+            color: black;
+        }
+
+        .button_add_book{
+            position: fixed;
+            bottom: 50px;
+            right: 50px;
+            padding: 20px;
+            border-radius: 50%;
+            background-color: rgb(166, 84, 244);
+            font-size: x-large;
+            z-index: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav_bar">
+        <h1>Bookshy</h1>
+    </div>
+
+    <div class="main_container">
+        <div class="sub_book_container">
+            <h2>Title of Book</h2>
+            <h5>Auther name</h5>
+            <p>Book Description Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maxime, assumenda quam porro expedita blanditiis molestias animi, exercitationem excepturi recusandae repellat eligendi veniam fugiat id enim! Voluptate eaque repudiandae expedita officia!</p>
+            <button onclick="deleteParent(event)">Delete</button>
+        </div>
+
+        <div class="screen_blur"></div>
+
+        <div class="popup_box">
+            <div class="popup_container">
+                <input type="text" placeholder="book title" id="book_title_input"><br>
+                <input type="text" placeholder="book author" id="book_author_input"><br>
+                <textarea placeholder="Short Description" id="book_description_input"></textarea><br>
+                <button class="button_add_book_container">Add</button><br>
+                <button class="button_cancel_book_conatiner">Cancel</button><br>
+            </div>
+        </div>
+
+        <button class="button_add_book">+</button>
+    </div>
+
+    <script src="./funtion.js"></script>
+    <script>
+        const main_container = document.getElementsByClassName('main_container');
+
+        const screen_blur = document.getElementsByClassName('screen_blur')[0];
+
+        const popup_box = document.getElementsByClassName('popup_box')[0];
+
+        const button_add_book = document.getElementsByClassName('button_add_book')[0];
+        
+        const button_add_book_container = document.getElementsByClassName('button_add_book_container')[0];
+        const button_cancel_book_conatiner = document.getElementsByClassName('button_cancel_book_conatiner')[0];
+
+        function deleteParent(event){
+            event.target.parentNode.remove();
+        };
+
+        button_add_book.addEventListener('click', function(){
+            screen_blur.style.display = 'block';
+            popup_box.style.display = 'block';
+        });
+
+        button_cancel_book_conatiner.addEventListener('click', function(){
+            screen_blur.style.display = 'none';
+            popup_box.style.display = 'none';  
+        });
+
+        screen_blur.addEventListener('click', function(){
+            screen_blur.style.display = 'none';
+            popup_box.style.display = 'none';  
+        });
+
+        button_add_book_container.addEventListener('click', function(){
+            const book_title_input = document.getElementById('book_title_input');
+            const book_author_input = document.getElementById('book_author_input');
+            const book_description_input = document.getElementById('book_description_input');
+
+            const new_div = document.createElement('div');
+            const new_h2 = document.createElement('h2');
+            const new_h5 = document.createElement('h5');
+            const new_p = document.createElement('p');
+            const new_button = document.createElement('button');
+
+            new_button.setAttribute('onclick', 'deleteParent(event)')
+            new_div.setAttribute('class', 'sub_book_container');
+
+            new_h2.innerText = book_title_input.value;
+            new_h5.innerText = book_author_input.value;
+            new_p.innerText = book_description_input.value;
+            new_button.innerText = "Delete";
+            
+            new_div.append(new_h2);
+            new_div.append(new_h5);
+            new_div.append(new_p);
+            new_div.append(new_button);
+
+            main_container[0].append(new_div);
+
+            console.log(main_container[0]);
+        });
+    </script>
+</body>
+</html>
